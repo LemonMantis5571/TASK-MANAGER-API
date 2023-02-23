@@ -4,6 +4,7 @@ import { methods as employeeControllers } from "../controller/methods.controller
 const router = Router();
 
 router.get("/api/empleados", employeeControllers.getEmpleados);
+router.get("/api/empleados/:id", employeeControllers.getEmpleadoPorID);
 router.post("/api/empleados/create", employeeControllers.createEmpleados);
 router.put("/api/empleados/update", employeeControllers.UpdateEmpleados);
 router.delete("/api/empleados/delete", employeeControllers.DeleteEmpleados);

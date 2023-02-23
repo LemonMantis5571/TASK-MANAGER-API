@@ -19,6 +19,12 @@ export const getEmpleados = async (req, res) => {
    res.json(rows);
 }
 
+export const getEmpleadoPorID = async(req, res) => {
+    const [rows] = await pool.query('SELECT * FROM employee WHERE id = ?', [req.params.id]);
+    console.log(rows);
+    res.send(rows);
+}
+
 export const UpdateEmpleados = async (req, res) => {
     res.send('Actualizando empleados');
 }
