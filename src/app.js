@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
-import router from "./routes/language.route";
+import EmplooyeRouter from "./routes/employee.route";
+import databaseRouter from "./routes/database.route";
 
 const app = express();
 
@@ -9,8 +10,10 @@ const app = express();
 app.set('port', 4001);
 
 // Middleware
+app.use(express.json());
 
-app.use("/api/languages", router);
+app.use(databaseRouter);
+app.use(EmplooyeRouter);
 
 app.use(morgan('dev')); 
 
