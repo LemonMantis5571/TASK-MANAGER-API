@@ -7,7 +7,7 @@ const app = express();
 
 // settings
 
-app.set('port', 4001);
+app.set('port', process.env.DB_PORT);
 
 // Routes
 app.use(express.json());
