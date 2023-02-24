@@ -9,12 +9,17 @@ const app = express();
 
 app.set('port', 4001);
 
-// Middleware
+// Routes
 app.use(express.json());
 
 app.use(databaseRouter);
 app.use(EmplooyeRouter);
-
+// Middleware
+app.use((req, res, next) => {
+    res.status(404).json({
+        message: 'Endpoint not found'
+    })
+})
 app.use(morgan('dev')); 
 
 export default app;

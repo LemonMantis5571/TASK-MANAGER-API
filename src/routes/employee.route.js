@@ -6,8 +6,8 @@ const router = Router();
 router.get("/api/empleados", employeeControllers.getEmpleados);
 router.get("/api/empleados/:id", employeeControllers.getEmpleadoPorID);
 router.post("/api/empleados/create", employeeControllers.createEmpleados);
-router.put("/api/empleados/update", employeeControllers.UpdateEmpleados);
-router.delete("/api/empleados/delete", employeeControllers.DeleteEmpleados);
+router.patch("/api/empleados/update/:id", employeeControllers.UpdateEmpleados);
+router.delete("/api/empleados/delete/:id", employeeControllers.DeleteEmpleados);
 
 
 export default router;
