@@ -7,7 +7,7 @@ export const pool = createPool({
     host: process.env.HOST || "",
     user: process.env.USER || "",
     password: process.env.PASSWORD || "",
-    port: 3306,
+    port: process.env.PORT || "",
     database: process.env.DATABASE || "",
 
 });
