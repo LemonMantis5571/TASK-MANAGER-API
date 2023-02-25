@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
-import EmplooyeRouter from "./routes/employee.route";
-import databaseRouter from "./routes/database.route";
+import usersRouter from "./routes/users.route";
+import TasksRouter from "./routes/tasks.route";
 
 const app = express();
 
@@ -12,8 +12,8 @@ app.set('port', process.env.PORT);
 // Routes
 app.use(express.json());
 
-app.use(databaseRouter);
-app.use(EmplooyeRouter);
+app.use(usersRouter);
+app.use(TasksRouter);
 // Middleware
 app.use((req, res, next) => {
     res.status(404).json({
