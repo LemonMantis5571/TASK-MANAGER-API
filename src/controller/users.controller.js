@@ -20,10 +20,16 @@ export const createUser = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+
     try {
 
       const [rows] =  await pool.query('SELECT * FROM users');
       res.json(rows);
+
+      if(!token) {
+        return res.status(401).send({message: 'Missing auth token'});
+    }
 
     } catch (error) {
         return res.status(500).json({
@@ -43,6 +49,10 @@ export const getUserByID = async(req, res) => {
         if (rows.length <= 0) return res.status(404).json({
             message: 'User not found'
         });
+
+        if(!token) {
+            return res.status(401).send({message: 'Missing auth token'});
+        }
     
         res.send(rows[0]); 
     } catch (error) {
