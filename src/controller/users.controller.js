@@ -5,6 +5,12 @@ export const createUser = async (req, res) => {
     const {user, password} = req.body;
     try {
 
+        const [results] = await pool.query('SELECT * FROM users WHERE user = ?', [user]);
+
+        if (results.length > 0) {
+            return res.status(409).json({message: 'User already exists'});
+        }
+
         const [rows] = await pool.query('INSERT INTO users (user, password) VALUES(?, ?)', [user, password]);
 
         res.send({
