@@ -40,7 +40,7 @@ export const getUser = async (req, res) => {
 
 export const getUserByID = async(req, res) => {
     const token = req.headers.authorization.split(' ')[1];
-    const payload = jwt.verify(token, 'secret');
+    const payload = jwt.verify(token, process.env.APIKEY);
     const userId = payload.userId
     try {
 
@@ -112,7 +112,11 @@ export const loginUsers = async (req, res) => {
             return res.status(401).json({message: 'Wrong Credentials'});
         }
 
+<<<<<<< HEAD
         const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, process.env.APIKEY);
+=======
+        const token = jwt.sign({userId: rows[0].id}, process.env.APIKEY);
+>>>>>>> origin/main
 
         res.json({token});
 
