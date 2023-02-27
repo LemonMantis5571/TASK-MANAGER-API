@@ -112,12 +112,7 @@ export const loginUsers = async (req, res) => {
             return res.status(401).json({message: 'Wrong Credentials'});
         }
 
-<<<<<<< HEAD
-        const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, process.env.APIKEY);
-=======
         const token = jwt.sign({userId: rows[0].id}, process.env.APIKEY);
->>>>>>> origin/main
-
         res.json({token});
 
 
