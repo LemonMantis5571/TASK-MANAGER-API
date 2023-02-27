@@ -10,7 +10,7 @@ export default function verifyToken(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token, 'secret');
+        const decoded = jwt.verify(token, process.env.APIKEY);
         req.userId = decoded.userId;
         console.log(req.userId);
         next();
