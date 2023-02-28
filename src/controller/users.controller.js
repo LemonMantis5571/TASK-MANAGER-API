@@ -15,8 +15,7 @@ export const createUser = async (req, res) => {
 
         res.send({
             id: rows.insertId,
-            user,
-            password
+            user
         });
 
     } catch (error) {
@@ -60,7 +59,11 @@ export const getUserByID = async(req, res) => {
             return res.status(401).send({message: 'Missing auth token'});
         }
     
-        res.send(rows[0]); 
+        res.send({
+            id: rows[0].id,
+            user: rows[0].user
+        }); 
+        
     } catch (error) {
         console.log(error);
         return res.status(500).json({
