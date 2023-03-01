@@ -1,11 +1,19 @@
 import { pool } from "../config";
 
 export const getUserTasks = async (req,res) => {
-   try {
-      const [rows] = await pool.query('SELECT tasks.*, users.user as user_name FROM tasks INNER JOIN users ON tasks.user_id = users.id WHERE tasks.user_id = ? ', [req.params.id]);
 
-      rows.length <= 0 ? res.status(404).json({message: 'This user has no tasks yet'}) : res.send(rows);
-      console.log(rows);
+   const token = req.headers.authorization.split(' ')[1];
+   const payload = jwt.verify(token, process.env.APIKEY);
+   const userId = payload.userId
+
+   try {
+      const [rows] = await pool.query('SELECT tasks.*, users.user as user_name FROM tasks INNER JOIN users ON tasks.user_id = users.id WHERE tasks.user_id = ? ', [userId]);
+
+      if (rows.length <= 0) {
+         return res.status(404).json({message: 'This user has no tasks yet'})
+      }
+
+      res.send(rows);
 
    } catch (error) {
       return res.status(500).json({
@@ -15,12 +23,21 @@ export const getUserTasks = async (req,res) => {
 }
 
 export const DeleteUserTasks = async (req, res) => {
+   
+   const token = req.headers.authorization.split(' ')[1];
+   const payload = jwt.verify(token, process.env.APIKEY);
+   const userId = payload.userId
+
    try {
       const {taskId, id} = req.params;
-      const [result] = await pool.query('SELECT tasks.title FROM tasks WHERE id = ? AND user_id = ?', [taskId, id]);
-      const [rows] = await pool.query('DELETE FROM tasks WHERE user_id = ? AND id = ?', [id, taskId]);
+      const [result] = await pool.query('SELECT tasks.title FROM tasks WHERE id = ? AND user_id = ?', [taskId, userId]);
+      const [rows] = await pool.query('DELETE FROM tasks WHERE user_id = ? AND id = ?', [userId, taskId]);
 
-      rows.affectedRows > 0 ? res.status(200).json({message: `Task: '${result[0].title}' deleted`}) : res.status(404).json({message: 'Task Not Found'});
+      if (rows.affectedRows <= 0) {
+         return res.status(404).json({message: 'Task Not Found'});
+      }
+
+       res.status(200).json({message: `Task: '${result[0].title}' deleted`});
 
    } catch (error) {
       return res.status(500).json({
