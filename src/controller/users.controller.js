@@ -50,7 +50,7 @@ export const getUserByID = async(req, res) => {
     try {
 
         const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
-        
+   
         if (rows.length <= 0) return res.status(404).json({
             message: 'User not found'
         });
@@ -121,7 +121,7 @@ export const loginUsers = async (req, res) => {
             return res.status(401).json({message: 'Wrong Credentials'});
         }
 
-        const token = jwt.sign({userId: rows[0].id}, process.env.APIKEY);
+        const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, process.env.APIKEY);
         res.json({token});
 
 
