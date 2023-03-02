@@ -47,15 +47,18 @@ export const DeleteUserTasks = async (req, res) => {
    }
 }
 
-export const CreateUserTask = async (req, res) => {
+export const CreateUserTask = async (req, res) => {  
+   const token = req.headers.authorization.split(' ')[1];
+   const payload = jwt.verify(token, process.env.APIKEY);
+   const userId = payload.userId
    try {
-      const {user_id, title, description, is_completed, priority, expires} = req.body;
+      const {title, description, is_completed, priority, expires} = req.body;
 
       const [rows] = await pool.query('INSERT INTO tasks (user_id, title, description, is_completed, priority, expires) VALUES (?, ?, ? , ?, ?, ?)',
-      [user_id,title,description,is_completed,priority,expires]);
+      [userId,title,description,is_completed,priority,expires]);
 
       res.send({
-         user_id,
+         user_id: userId,
          title,
          description,
          is_completed,

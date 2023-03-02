@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/api/users/id/tasks", verifyToken, TasksController.getUserTasks);
 router.delete("/api/users/id/tasks/:taskId", verifyToken, TasksController.DeleteUserTasks);
-router.post("/api/users/create/tasks", TasksController.CreateUserTask);
+router.post("/api/users/create/tasks", verifyToken, TasksController.CreateUserTask);
 
 
 
