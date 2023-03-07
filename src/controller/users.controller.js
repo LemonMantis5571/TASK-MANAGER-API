@@ -13,10 +13,11 @@ export const createUser = async (req, res) => {
 
         const [rows] = await pool.query('INSERT INTO users (user, password) VALUES(?, ?)', [user, password]);
 
-        res.send({
+        res.status(201).send({
             id: rows.insertId,
             user
         });
+
 
     } catch (error) {
         return res.status(500).json({message: error});
@@ -34,7 +35,9 @@ export const getUser = async (req, res) => {
 
       if(!token) {
         return res.status(401).send({message: 'Missing auth token'});
-    }
+      }
+
+      res.status(200);
 
     } catch (error) {
         return res.status(500).json({
@@ -85,9 +88,9 @@ export const UpdateUsers = async (req, res) => {
     
         const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
         res.json(rows[0]);
+
         
     } catch (error) {
-        console.log(error);
         return res.status(500).json({
             message: error
         });
@@ -102,6 +105,7 @@ export const DeleteUsers = async (req, res) => {
         const [result] = await pool.query('DELETE FROM users WHERE id = ?', [req.params.id]);
         result.affectedRows > 0 ? res.status(204) : res.status(404).json({message: 'User not found'});
         
+
     } catch (error) {
         return res.status(500).json({
             message: error
@@ -124,7 +128,7 @@ export const loginUsers = async (req, res) => {
         const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, process.env.APIKEY);
         res.json({token});
 
-
+        res.status(200).json({message: 'Login Success'});
 
     } catch (error) {
         return res.status(500).json({message: error});
