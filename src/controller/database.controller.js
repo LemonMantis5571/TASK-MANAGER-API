@@ -14,10 +14,8 @@ export const getUserTasks = async (req,res) => {
          return res.status(404).json({message: 'This user has no tasks yet'});
       }
 
-      res.send(rows);
+      res.status(200).send(rows);
       
-      res.status(200);
-
    } catch (error) {
       return res.status(500).json({
          message: error
@@ -59,7 +57,7 @@ export const CreateUserTask = async (req, res) => {
       const [rows] = await pool.query('INSERT INTO tasks (user_id, title, description, is_completed, priority, expires) VALUES (?, ?, ? , ?, ?, ?)',
       [userId,title,description,is_completed,priority,expires]);
 
-      res.send({
+      res.status(201).send({
          user_id: userId,
          title,
          description,
@@ -68,9 +66,6 @@ export const CreateUserTask = async (req, res) => {
          expires
       })
 
-      res.status(201).json({
-         message: Created
-      })
 
    } catch (error) {
       return res.status(500).json({

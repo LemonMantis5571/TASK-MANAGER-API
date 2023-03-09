@@ -31,13 +31,11 @@ export const getUser = async (req, res) => {
     try {
 
       const [rows] =  await pool.query('SELECT * FROM users');
-      res.json(rows);
+      res.status(200).json(rows);
 
       if(!token) {
         return res.status(401).send({message: 'Missing auth token'});
       }
-
-      res.status(200);
 
     } catch (error) {
         return res.status(500).json({
@@ -68,7 +66,6 @@ export const getUserByID = async(req, res) => {
         }); 
         
     } catch (error) {
-        console.log(error);
         return res.status(500).json({
             message: error
         });
@@ -128,7 +125,6 @@ export const loginUsers = async (req, res) => {
         const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, process.env.APIKEY);
         res.json({token});
 
-        res.status(200).json({message: 'Login Success'});
 
     } catch (error) {
         return res.status(500).json({message: error});
