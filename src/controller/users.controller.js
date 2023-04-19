@@ -33,10 +33,8 @@ export const getUser = async (req, res) => {
       const [rows] =  await pool.query('SELECT * FROM users');
       res.status(200).json(rows);
 
-      if(!token) {
-        return res.status(401).send({message: 'Missing auth token'});
-      }
 
+      
     } catch (error) {
         console.log(error);
         return res.status(500).json({
