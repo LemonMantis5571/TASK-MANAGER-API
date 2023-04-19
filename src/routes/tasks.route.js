@@ -1,6 +1,6 @@
 import { Router } from "express";
-import verifyToken from "../Auth/auth.token";
-import { TasksMethods as TasksController } from "../controller/methods.controller";
+import verifyToken from "../Auth/auth.token.js";
+import { TasksMethods as TasksController } from "../controller/methods.controller.js";
 const router = Router();
 
 router.get("/api/users/id/tasks", verifyToken, TasksController.getUserTasks);

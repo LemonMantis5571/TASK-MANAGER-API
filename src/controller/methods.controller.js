@@ -1,5 +1,5 @@
-import { getUser, UpdateUsers, createUser, DeleteUsers, getUserByID, loginUsers} from "./users.controller";
-import { DeleteUserTasks, getUserTasks, CreateUserTask } from "./database.controller";
+import { getUser, UpdateUsers, createUser, DeleteUsers, getUserByID, loginUsers} from "./users.controller.js";
+import { DeleteUserTasks, getUserTasks, CreateUserTask } from "./database.controller.js";
 
 export const methods = {
     getUser,

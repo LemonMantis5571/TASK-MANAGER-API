@@ -1,4 +1,4 @@
-import { pool } from "../config";
+import { pool } from "../config.js";
 import jwt from 'jsonwebtoken';
 
 export const getUserTasks = async (req,res) => {
@@ -17,6 +17,7 @@ export const getUserTasks = async (req,res) => {
       res.status(200).send(rows);
       
    } catch (error) {
+      console.log(error);
       return res.status(500).json({
          message: error
       });
@@ -41,6 +42,7 @@ export const DeleteUserTasks = async (req, res) => {
        res.status(200).json({message: `Task: '${result[0].title}' deleted`});
 
    } catch (error) {
+      console.log(error);
       return res.status(500).json({
          message: error
       });
@@ -68,6 +70,7 @@ export const CreateUserTask = async (req, res) => {
 
 
    } catch (error) {
+      console.log(error);
       return res.status(500).json({
          message: error
       });

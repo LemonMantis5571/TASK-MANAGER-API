@@ -1,9 +1,7 @@
     import express from "express";
     import morgan from "morgan";
-    import usersRouter from "./routes/users.route";
-    import TasksRouter from "./routes/tasks.route";
-    import cacheControl from "express-cache-controller";
-
+    import usersRouter from "./routes/users.route.js";
+    import TasksRouter from "./routes/tasks.route.js";
     const app = express();
 
     // settings

@@ -1,4 +1,4 @@
-import { pool } from "../config";
+import { pool } from "../config.js";
 import jwt from 'jsonwebtoken'
 
 export const createUser = async (req, res) => {
@@ -20,6 +20,7 @@ export const createUser = async (req, res) => {
 
 
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message: error});
     }
    
@@ -38,6 +39,7 @@ export const getUser = async (req, res) => {
       }
 
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             message: error
         })
@@ -66,6 +68,7 @@ export const getUserByID = async(req, res) => {
         }); 
         
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             message: error
         });
@@ -88,6 +91,7 @@ export const UpdateUsers = async (req, res) => {
 
         
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             message: error
         });
@@ -104,6 +108,7 @@ export const DeleteUsers = async (req, res) => {
         
 
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             message: error
         });
@@ -127,6 +132,7 @@ export const loginUsers = async (req, res) => {
 
 
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message: error});
     }
 }
