@@ -4,7 +4,6 @@ import verifyToken from "../Auth/auth.token.js";
 
 const router = Router();
 
-router.get("/api/users", usersControllers.getUser);
 router.get("/api/users/id", verifyToken, usersControllers.getUserByID);
 router.post("/api/users/create", usersControllers.createUser);
 router.patch("/api/users/update/", verifyToken, usersControllers.UpdateUsers);

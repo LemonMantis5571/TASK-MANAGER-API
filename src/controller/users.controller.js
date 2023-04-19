@@ -26,23 +26,6 @@ export const createUser = async (req, res) => {
    
 }
 
-export const getUser = async (req, res) => {
-
-    try {
-
-      const [rows] =  await pool.query('SELECT * FROM users');
-      res.status(200).json(rows);
-
-
-      
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            message: error
-        })
-    }
-}
-
 export const getUserByID = async(req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const payload = jwt.verify(token, process.env.APIKEY);
