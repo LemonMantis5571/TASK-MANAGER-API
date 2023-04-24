@@ -1,16 +1,16 @@
 {
   "version": 2,
   "builds": [
-    { "src": "src/index.js", "use": "@vercel/node" }
+    { "src": "./src/index.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/users/id/tasks", "dest": "/src/routes/tasks.route.js" },
-    { "src": "/api/users/id/tasks/:taskId", "dest": "/src/routes/tasks.route.js" },
-    { "src": "/api/users/create/tasks", "dest": "/src/routes/tasks.route.js" },
-    { "src": "/api/users/id", "dest": "/src/routes/users.route.js" },
-    { "src": "/api/users/create", "dest": "/src/routes/users.route.js" },
-    { "src": "/api/users/update", "dest": "/src/routes/users.route.js" },
-    { "src": "/api/users/delete/:id", "dest": "/src/routes/users.route.js" },
-    { "src": "/api/users/login", "dest": "/src/routes/users.route.js" }
+    { "src": "/api/users/id/tasks", "dest": "./src/routes/tasks.route.js" },
+    { "src": "/api/users/id/tasks/:taskId", "dest": "./src/routes/tasks.route.js" },
+    { "src": "/api/users/create/tasks", "dest": "./src/routes/tasks.route.js" },
+    { "src": "/api/users/id", "dest": "./src/routes/users.route.js" },
+    { "src": "/api/users/create", "dest": "./src/routes/users.route.js" },
+    { "src": "/api/users/update", "dest": "./src/routes/users.route.js" },
+    { "src": "/api/users/delete/:id", "dest": "./src/routes/users.route.js" },
+    { "src": "/api/users/login", "dest": "./src/routes/users.route.js" }
   ]
 }
