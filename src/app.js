@@ -18,8 +18,6 @@
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Cache-Control');
         next();
     });
-
-    console.log(rootDir)
     // Routes
     app.use(express.json());
 
