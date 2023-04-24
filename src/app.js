@@ -3,6 +3,8 @@
     import usersRouter from "./routes/users.route.js";
     import TasksRouter from "./routes/tasks.route.js";
     const app = express();
+    const rootDir = __dirname;
+
 
     // settings
 
@@ -17,7 +19,7 @@
         next();
     });
 
-
+    console.log(rootDir)
     // Routes
     app.use(express.json());
 
