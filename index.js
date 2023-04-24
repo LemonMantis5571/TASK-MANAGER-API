@@ -1,5 +1,5 @@
-import app from "./app.js";
-const home = require("./routes/home");
+import app from "./src/app.js";
+const home = require("./src/routes/home.js");
 const main = () => {
     app.use("/home", home);
     app.listen(app.get("port"))
