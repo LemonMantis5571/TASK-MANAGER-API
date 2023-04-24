@@ -1,4 +1,4 @@
-import { pool } from "../config.js";
+import { APIKEY, pool } from "../config.js";
 import jwt from 'jsonwebtoken'
 
 export const createUser = async (req, res) => {
@@ -107,7 +107,7 @@ export const loginUsers = async (req, res) => {
             return res.status(401).json({message: 'Wrong Credentials'});
         }
 
-        const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, process.env.APIKEY);
+        const token = jwt.sign({user: rows[0].user, userId: rows[0].id}, APIKEY);
         res.json({token});
 
 
