@@ -1,6 +1,5 @@
     import express from "express";
     import morgan from "morgan";
-    const home = require("./routes/home");
     import usersRouter from "./routes/users.route.js";
     import TasksRouter from "./routes/tasks.route.js";
     const app = express();
@@ -22,7 +21,6 @@
     
     // Routes
     app.use(express.json());
-    app.use("/home", home);
     app.use(usersRouter);
     app.use(TasksRouter);
     // Middleware
