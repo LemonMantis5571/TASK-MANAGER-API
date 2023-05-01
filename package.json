@@ -10,7 +10,6 @@
     "dev": "nodemon --exec npm run babel-node ./index.js",
     "start": "nodemon --exec npm run babel-node ./index.js"
   },
-  
   "author": "LemonMantis5571",
   "license": "ISC",
   "dependencies": {
@@ -18,6 +17,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-cache-controller": "^1.1.0",
+    "express-rate-limit": "^6.7.0",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.1.2",
     "promise-mysql": "^5.2.0"
