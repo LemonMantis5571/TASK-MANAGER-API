@@ -61,7 +61,7 @@ user: User name
 
 **Authorization: Bearer token obtained from /api/users/login**
 
-###Request Body
+### Request Body
 ```
 user: User name
 password: User password
@@ -168,8 +168,8 @@ Response
 **Delete a task for the authenticated user.**
 
 ### URL: /api/users/:id/tasks/:taskId
--Method: DELETE
--Headers:
+- Method: DELETE
+- Headers:
 
 *Authorization: Bearer token*
 ```
@@ -185,8 +185,8 @@ Status Code: 200 OK
 **Create a task for the authenticated user.**
 
 ### URL: /api/users/create/tasks
--Method: POST
--Headers:
+- Method: POST
+- Headers:
 *Authorization: Bearer token*
 Request Body:
 ```
@@ -216,6 +216,6 @@ Status Code: 201 Created
 ### Errors
 The API can return the following errors:
 
--401 Unauthorized: when the JWT token is missing or invalid
--404 Not Found: when the specified task or user cannot be found
--500 Internal Server Error: when an unexpected error occurs
+- 401 Unauthorized: when the JWT token is missing or invalid
+- 404 Not Found: when the specified task or user cannot be found
+- 500 Internal Server Error: when an unexpected error occurs
