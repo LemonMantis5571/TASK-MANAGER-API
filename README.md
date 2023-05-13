@@ -17,6 +17,8 @@ The API also uses rate limiting middleware to prevent abuse and ensure fair usag
 ```
 $ npm i
 ```
+**The tables structures are available in the database folder.
+Make sure to have the .env file with the proper variables on the config.js**
 
 ## Basic use
 
